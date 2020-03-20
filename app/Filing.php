@@ -5,9 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Company extends Model
+
+class Filing extends Model
 {
-    public $table = 'companies';
+    public $table = 'filings';
 
 }
-

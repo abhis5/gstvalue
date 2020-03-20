@@ -27,7 +27,7 @@ Route::POST('/company/store','CompanyController@store') -> middleware('admin');
 Route::get('/delCompany/{id}','CompanyController@destroy');
 Route::get('/editCompany/{id}','CompanyController@edit');
 Route::get('/profile/{id}','ProfileController@show');
-
+Route::get('/filing/store','ProfileController@store') -> middleware('admin');
 
 
 

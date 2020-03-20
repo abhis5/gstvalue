@@ -9,12 +9,6 @@
 
     <title>GST Value</title>
 
-
-
-    <!-- Scripts -->
-    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
-
-    <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -25,29 +19,13 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-
-<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
-    <title>Sidebar template</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-        crossorigin="anonymous">
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-    <meta name="csrf-token" content=" {{csrf_token()}}">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
-    <!-- Styles -->
-    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
 </head>
 <body>
 
    
 
 
-   </div>
+   
     <div id="app">
 
     
@@ -56,14 +34,14 @@
                 <a class="navbar-brand" href="{{ url('/home') }}">
                     GST Value
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+              
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
+                    <ul class="navbar-nav">
+                           <li class="nav-item active" >
+                             <a class="nav-link" href="/company">Company Data</a> 
+                             </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -102,21 +80,7 @@
             </div>
         </nav>
 
-          
-<div class="d-flex" id="wrapper">
 
-<!-- Sidebar -->
-        <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">Admin </div>
-            <div class="list-group list-group-flush">
-                        <a href="/company" class="list-group-item list-group-item-action bg-light">Company Data</a>
-                        <a href="/profile" class="list-group-item list-group-item-action bg-light">Profile</a>
-                        <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
-                        <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
-                        <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
-                        <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
-        </div>
-</div>
 
         <main class="py-4">
             @yield('content')

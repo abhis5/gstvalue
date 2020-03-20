@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Company;
-use App\Filing;
 use Illuminate\Support\Facades\DB;
-class ProfileController extends Controller
+use App\Filing;
+use App\Company;
+
+class FilingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -36,23 +37,27 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-      
-        $file= new Filing();
+    //     $file= new Filing();
 
-       
-        $file -> gst_id= $request['gst_id'];
-        $file -> year= $request['year'];
+    //     $gst =  $request['gst_id'];
+    //     $file -> gst_id= $request['gst_id'];
+    //     $file -> year= $request['year'];
         
          
-        if(  !(($request['month']) == null )) {$file->month= $request['month'];}
-        if(  !(($request['3b']) == null )) {$file->gstr_3b= $request['3b'];}
-        if(  !(($request['r1']) == null )) {$file->gstr_1= $request['r1'];}
-        if(  !(($request['pay']) == null )) {$file->paid= $request['pay'];}
+    //     if(  !(($request['month']) == null )) {$file->month= $request['month'];}
+    //     if(  !(($request['3b']) == null )) {$file->gstr_3b= $request['3b'];}
+    //     if(  !(($request['pay']) == null )) {$file->paid= $request['pay'];}
         
-    // add other fields
-    $file->save();
-  
-    return redirect()->back(); 
+    // // add other fields
+    // $file->save();
+    //    $profile = Company::find($id);
+    // //  $files = DB::table('filing') -> where('gst_id', '$gst') ->get();
+    // return redirect()->route('profile', ['id' => $gst]) -> with('profile', $profile) ;
+
+
+   
+
+
     }
 
     /**
@@ -63,14 +68,7 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-       
-        $profile = Company::find($id);
-        
-        $files = Filing::where('gst_id', '=', $id) -> orderBy('year', 'desc')->get();
-
-    //  dd($files);
-         return View('profile') ->with('profile', $profile) -> with('files' , $files) ;
-      //  return view('profile',compact('profile','files'));
+        //
     }
 
     /**
