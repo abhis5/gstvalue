@@ -18,7 +18,10 @@ class Admin
     public function handle($request, Closure $next)
     {
         $user = Auth::user();
+        if($user == NULL){
+            return redirect('/login') ->with('autoLogout', 'Error! Login again');;
 
+        }
         if($user -> role == '1'){
             return $next($request);
         }

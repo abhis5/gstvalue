@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Company;
+use App\Filing;
+
 
 
 class CompanyController extends Controller
@@ -80,9 +82,8 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        $edit = Company::find($id);
-
-        return View('company') ->with('edit', $edit);
+        $company = Company::find($id);
+        return View('company.editData') ->with('company', $company);
         
     }
 
@@ -95,7 +96,23 @@ class CompanyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $files = Filing::where('gst_id', '=', $id) -> orderBy('year', 'desc') -> orderBy('month' , 'desc') ->get();
+
+        $company = Company::find($id);
+        $profile = $company;
+        $company->name= $request['name'];
+        $company->gst_no= $request['gst_no'];
+
+        $company->address= $request['address'];
+        $company->mobile= $request['mobile'];
+        $company->email= $request['email'];
+        $company->email_pass= $request['email_pass'];
+        $company->gst_id= $request['gst_id'];
+        $company->gst_pass= $request['type'];
+        $company->type= $request['type'];
+    $company->save();
+    return View('profile') -> with('profile', $profile) -> with('files' , $files) ->  with('CompanyUpdateSuccess', 'Updated Successfully!');
+        
     }
 
     /**
@@ -106,8 +123,6 @@ class CompanyController extends Controller
      */
     public function destroy($id)
     {
-        
-        
         DB::table('companies')->where('id', '=', $id)->delete();
          return redirect('/company');
     }

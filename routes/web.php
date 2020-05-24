@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::get('/profile', function () {
     return view('profile');
 });
@@ -19,16 +23,26 @@ Route::get('/sidebar', function () {
     return view('layouts.sidebar');
 });
 
+Route::get('/company/add', function () {
+    return view('company.addData');
+});
+
 
 
 Route::get('/home', 'HomeController@index')->name('home') -> middleware('admin');
 Route::get('/company', 'CompanyController@index')->name('company') -> middleware('admin');
 Route::POST('/company/store','CompanyController@store') -> middleware('admin');
 Route::get('/delCompany/{id}','CompanyController@destroy');
-Route::get('/editCompany/{id}','CompanyController@edit');
-Route::get('/profile/{id}','ProfileController@show');
-Route::get('/filing/store','ProfileController@store') -> middleware('admin');
 
+
+
+Route::get('/company/edit/{id}','CompanyController@edit');
+Route::POST('/company/edit/submit/{id}','CompanyController@update');
+
+Route::get('/profile/{id}','ProfileController@show')-> middleware('admin') -> name('profile');
+Route::get('/profile/{id}/editForm','ProfileController@showEdit')-> middleware('admin');
+Route::get('/filing/store','ProfileController@store') -> middleware('admin');
+Route::get('/profile/editForm/submit/{id}','ProfileController@edit')-> middleware('admin');
 
 
 
