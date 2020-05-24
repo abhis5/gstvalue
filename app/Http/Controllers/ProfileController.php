@@ -108,13 +108,7 @@ class ProfileController extends Controller
         return redirect()->route('profile', ['id' => $profile])->with('editSuccess', 'Updated Successfully!');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function update(Request $request, $id)
     {
         //
