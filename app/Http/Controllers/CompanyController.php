@@ -44,6 +44,7 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
         
+        
         $company= new Company();
         
         $company->name= $request['name'];

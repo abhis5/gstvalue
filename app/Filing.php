@@ -10,4 +10,8 @@ class Filing extends Model
 {
     public $table = 'filings';
 
+
+    
+
 }
+

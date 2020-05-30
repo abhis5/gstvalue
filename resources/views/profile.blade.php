@@ -11,16 +11,18 @@ $d_type = array("Regular", "Composition");
 
 
   <script>
+    // $(document).ready(function() {
+    //     $('#regular_data').DataTable( {
+    //         "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
+
+
+
+    //     } );
+    // } );
     $(document).ready(function() {
       $('#regular_data').DataTable({
         dom: 'Bfrtip',
         buttons: [{
-            extend: 'copyHtml5',
-            exportOptions: {
-              columns: [0, ':visible']
-            }
-          },
-          {
             extend: 'excelHtml5',
             exportOptions: {
               columns: ':visible'
@@ -35,12 +37,17 @@ $d_type = array("Regular", "Composition");
           },
           {
             extend: 'pdfHtml5',
+            title: '{{ $profile->name }}   ',
             exportOptions: {
-              columns: ':visible'
+              columns: ':visible',
+              title: 'The information in this table is copyright to Sirius Cybernetics Corp.'
+
             }
           },
+
           'colvis'
-        ]
+        ],
+
       });
     });
   </script>
@@ -113,6 +120,7 @@ $d_type = array("Regular", "Composition");
 
   <!-- Jumbotron -->
   <div class="jumbotron text-center  lighten-6  border border-primary shadow p-3 mb-5 bg-blue-grey rounded profile mw-100">
+    <button class="btn btn-primary" onclick="window.print()">Print this page</button>
 
 
     <div class="container  view overlay">
@@ -145,8 +153,8 @@ $d_type = array("Regular", "Composition");
     @if(session()->has('editSuccess'))
     <div class="alert alert-success">
       <strong>
-      
-        <p> {{   print(session('editSuccess'))}}  </p>
+
+        <p> {{ print(session('editSuccess'))}} </p>
       </strong>
     </div>
     @endif
@@ -170,10 +178,10 @@ $d_type = array("Regular", "Composition");
     @if(session()->has('addSuccess'))
     <div class="alert alert-success">
       <strong>
-      <!-- <p> {{   print(session('addSuccess'))}}  </p> -->
+        <p> {{ print(session('addSuccess'))}} </p>
 
-      <p> {{ $requestData[0] }}  </p>
-    
+        <!-- <p> {{ $requestData[0] }}  </p> -->
+
       </strong>
     </div>
     @endif
@@ -229,9 +237,9 @@ $d_type = array("Regular", "Composition");
                 <label class="input-group-text text-primary" for="inputGroupSelect01">3B</label>
               </div>
               <select class="custom-select" placeholder="3B" required name="3b" required onchange="this.className=this.options[this.selectedIndex].className" class="blueText">
-              <option class="blueText" value="999" selected>Select 3B</option> 
-              <option class="greenText" value="1">Filed</option>
-                <option class="redText" value="0" selected >Not Filed</option>
+                <option class="blueText" value="999" selected>Select 3B</option>
+                <option class="greenText" value="1">Filed</option>
+                <option class="redText" value="0" selected>Not Filed</option>
 
               </select>
             </div>
@@ -242,9 +250,9 @@ $d_type = array("Regular", "Composition");
                 <label class="input-group-text text-primary" for="inputGroupSelect01">R1</label>
               </div>
               <select class="custom-select" placeholder="R1" required name="r1" required onchange="this.className=this.options[this.selectedIndex].className" class="blueText">
-              <option class="blueText" value="999">Select R1</option> 
- 
-              <option class="greenText" value="1">Filed</option>
+                <option class="blueText" value="999">Select R1</option>
+
+                <option class="greenText" value="1">Filed</option>
                 <option class="redText" value="0">Not Filed</option>
 
               </select>
@@ -255,10 +263,10 @@ $d_type = array("Regular", "Composition");
               <div class="input-group-prepend">
                 <label class="input-group-text text-primary" for="inputGroupSelect01">Pay Status</label>
               </div>
-              <select class="custom-select" placeholder="R1" required name="pay" required onchange="this.className=this.options[this.selectedIndex].className" class="blueText" >
-              <option class="blueText" value="999">Select Pay</option> 
+              <select class="custom-select" placeholder="R1" required name="pay" required onchange="this.className=this.options[this.selectedIndex].className" class="blueText">
+                <option class="blueText" value="999">Select Pay</option>
 
-              <option class="greenText" value="1">Paid</option>
+                <option class="greenText" value="1">Paid</option>
                 <option class="redText" value="0">Not Paid</option>
 
               </select>
@@ -277,6 +285,8 @@ $d_type = array("Regular", "Composition");
         </form>
       </div>
       <div class=" border border-primary shadow p-3 mb-5 rounded">
+        <!-- <div class="h6">{{ $profile -> name}}</div> -->
+
         <table class="table table-hover table-bordered   dt-responsive nowrap" id="regular_data">
           <thead>
             <tr>

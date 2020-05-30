@@ -54,13 +54,8 @@
 
 <body>
 
-    @if(session()->has('autoLogout'))
-    <div class="alert alert-danger">
-        <strong>
-            <p> Session Expired! Login Again</p>
-        </strong>
-    </div>
-    @endif
+
+    
 
 
 
@@ -104,7 +99,13 @@
             </div>
         </div>
     </nav>
-
+    @if(session()->has('autoLogout'))
+    <div class="alert alert-danger">
+        <strong>
+            <p> Session Expired! Login Again</p>
+        </strong>
+    </div>
+    @endif
 
 
     <div class="container-main">

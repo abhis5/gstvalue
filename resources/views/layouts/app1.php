@@ -39,12 +39,6 @@
     <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.colVis.min.js"></script>
     <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script> -->
-
-    <!-- <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script> -->
-
-
-    
     <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.3.0/js/dataTables.select.min.js"></script>
@@ -57,11 +51,7 @@
 
 
 
-    <script>
-        $(document).ready(function() {
-            $('.dropdown-toggle').dropdown();
-        });
-    </script>
+
 </head>
 <style>
     .container-main {
@@ -79,59 +69,56 @@
 
 
 
+    <div class="container">
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <!-- <div class="container"> -->
-
-
-
-        <a class="navbar-brand" href="{{ url('/home') }}">
-            GST Value
-        </a>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <!-- <div class="container"> -->
+            <a class="navbar-brand" href="{{ url('/home') }}">
+                GST Value
+            </a>
 
 
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left Side Of Navbar -->
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/company">Company Data</a>
+                    </li>
+                </ul>
 
+                <!-- Right Side Of Navbar -->
+                <ul class="navbar-nav ml-auto">
+                    <!-- Authentication Links -->
+                    @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                    @if (Route::has('register'))
+                    <li class="nav-item">
+                        <!-- <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a> -->
+                    </li>
+                    @endif
+                    @else
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
 
-
-        <!-- Right Side Of Navbar -->
-        <ul class="navbar-nav ml-auto my-2 my-lg-0  ">
-            <!-- Authentication Links -->
-            <li class="nav-item active">
-                <a class="nav-link" href="/company">Company <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/reports">Report <span class="sr-only">(current)</span></a>
-            </li>
-            @guest
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-            </li>
-            @if (Route::has('register'))
-            <li class="nav-item">
-                <!-- <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a> -->
-            </li>
-            @endif
-            @else
-            <li class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    {{ Auth::user()->name }}
-                </a>
-
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
+                                {{ __('Logout') }}
+                            </a>
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </div>
-            </li>
-            @endguest
-        </ul>
-        </div>
-        </div>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                    @endguest
+                </ul>
+            </div>
+    </div>
     </nav>
 
 
@@ -139,7 +126,7 @@
     <main class="py-4 container-main">
         @yield('content')
     </main>
-
+    </div>
 </body>
 
 </html>

@@ -9,5 +9,10 @@ class Company extends Model
 {
     public $table = 'companies';
 
+    public function comments()
+    {
+        return $this->hasMany('App\Filing');
+    }
+
 }
 

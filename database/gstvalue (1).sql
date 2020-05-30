@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2020 at 07:06 PM
+-- Generation Time: May 30, 2020 at 12:39 PM
 -- Server version: 10.4.11-MariaDB
--- PHP Version: 7.2.28
+-- PHP Version: 7.2.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -34,6 +33,14 @@ CREATE TABLE `cache` (
   `expiration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `cache`
+--
+
+INSERT INTO `cache` (`key`, `value`, `expiration`) VALUES
+('gstvalue_cacheabhi01blp@gmail.com|192.168.0.5', 'i:1;', 1590766024),
+('gstvalue_cacheabhi01blp@gmail.com|192.168.0.5:timer', 'i:1590766024;', 1590766024);
+
 -- --------------------------------------------------------
 
 --
@@ -48,8 +55,8 @@ CREATE TABLE `companies` (
   `mobile` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `email_pass` varchar(255) NOT NULL,
-  `gst_id` varchar(255) NOT NULL,
-  `gst_pass` varchar(255) NOT NULL,
+  `gst_id` varchar(255) DEFAULT NULL,
+  `gst_pass` varchar(255) DEFAULT NULL,
   `type` varchar(255) NOT NULL,
   `approval` varchar(255) DEFAULT NULL,
   `created_at` varchar(255) DEFAULT NULL,
@@ -61,8 +68,11 @@ CREATE TABLE `companies` (
 --
 
 INSERT INTO `companies` (`id`, `name`, `gst_no`, `address`, `mobile`, `email`, `email_pass`, `gst_id`, `gst_pass`, `type`, `approval`, `created_at`, `updated_at`) VALUES
-(11, 'Accenture', '', 'online mobile and accessories, gandhi chowk sanala road', '08299120767', 'shukla98abhishek@gmail.com', '', '', '', 'Composition', 'STATE', '2020-01-10 11:16:24', '2020-01-10 11:16:24'),
-(12, 'SADHAN SAHKARI SAMITI LIMITED SHIVPURA', '18AABCT3518Q1ZV', 'SHIVPURA TULSIPUR BALRAMPUR', '1234567890', 'abhi02blp@gmail.com', '78342576', 'shivpura@6957', '2', '2', NULL, '2020-03-18 18:00:34', '2020-03-18 18:00:34');
+(34, 'Ganga Oil Mill', '18AABCT3518Q1ZV', 'Industrial area, Bhagwatiganj', '9984842773', 'abhi02blp@gmail.com', '9984842773', 'ganga_6963', '1', '1', NULL, '2020-05-26 18:14:29', '2020-05-26 18:14:29'),
+(35, 'SGRK', '18AABCT3518Q1ZV', 'Bhagwatiganj', '8299120767', 'blp271202@gmail.com', '9984842773', 'sgrk_82', '1', '1', NULL, '2020-05-26 18:18:14', '2020-05-26 18:18:14'),
+(36, 'Ganga Enterprises', '18AABCT3518Q1ZV', 'Bhagwatiganj', '8299120767', 'blp271202@gmail.com', '9984842773', 'ganga_6954', '1', '1', NULL, '2020-05-26 18:38:44', '2020-05-26 18:38:44'),
+(37, 'Mahaveer Traders', '18AABCT3518Q1ZV', 'Bhagwatiganj', '9984842773', 'tallydatablp@gmail.com', '9984842773', 'mahaveer#890', '1', '1', NULL, '2020-05-27 04:47:31', '2020-05-27 04:47:31'),
+(38, 'JKDAFH', '18AABCT3518Q1ZV', 'KURMIDEEH', '9984842773', 'ABHI01REG@GMAIL.COM', 'ABHI01REG@GMAIL.COM', NULL, '2', '2', NULL, '2020-05-29 15:28:10', '2020-05-29 15:28:10');
 
 -- --------------------------------------------------------
 
@@ -77,6 +87,38 @@ CREATE TABLE `eway_bill` (
   `password` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `filings`
+--
+
+CREATE TABLE `filings` (
+  `id` int(255) NOT NULL,
+  `gst_id` int(255) NOT NULL,
+  `year` varchar(255) NOT NULL,
+  `month` varchar(255) DEFAULT NULL,
+  `quarter` int(255) DEFAULT NULL,
+  `gstr_3b` int(255) DEFAULT 0,
+  `gstr_cmp` int(255) DEFAULT 0,
+  `gstr_1` int(255) DEFAULT 0,
+  `paid` int(255) DEFAULT 0,
+  `created_at` date NOT NULL,
+  `updated_at` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `filings`
+--
+
+INSERT INTO `filings` (`id`, `gst_id`, `year`, `month`, `quarter`, `gstr_3b`, `gstr_cmp`, `gstr_1`, `paid`, `created_at`, `updated_at`) VALUES
+(172, 34, '2019-20', '1', NULL, 1, 0, 1, 0, '2020-05-26', '2020-05-26'),
+(175, 35, '2019-20', '1', NULL, 1, 0, 1, 0, '2020-05-26', '2020-05-26'),
+(176, 36, '2019-20', '2', NULL, 1, 0, 0, 1, '2020-05-27', '2020-05-27'),
+(177, 36, '2019-20', '3', NULL, 1, 0, 0, 0, '2020-05-27', '2020-05-27'),
+(180, 34, '2019-20', '2', NULL, 1, 0, 1, 0, '2020-05-29', '2020-05-29'),
+(181, 35, '2019-20', '2', NULL, 0, 0, 1, 1, '2020-05-30', '2020-05-30');
 
 -- --------------------------------------------------------
 
@@ -153,6 +195,15 @@ CREATE TABLE `sessions` (
   `last_activity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `sessions`
+--
+
+INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('fgFSKozmborJUJiEXwtEudfkEyJ4Q6UYqRYUqPcd', 1, '192.168.0.10', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZlNYcXhNeVhVODROalpwRDhnQTRvY1R1QUt5d2tSaTg5bkVnVWpFMyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjI6Imh0dHA6Ly9nc3QuY29tL3JlcG9ydHMiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1590824970),
+('rdZrVhSTAIKMSLySEdARtPbqMhGG1qovLeceRgGO', 1, '192.168.0.10', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoibXFGWGlZc2tmN2xYU25qakgwaGZmeEpZMHpTNGp1bmQxbXI2RHQwRSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjU6Imh0dHA6Ly9nc3QuY29tL3Byb2ZpbGUvMzQiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=', 1590833920),
+('ZuBKluZtVQ0K4ehbQueE6w9BkOm4gLcDdEa2hp9T', 1, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiaGY5Wlp0UUQ3Nk45M0VMbllBVGZ0WXVJYTRENFI1MDZoTFJrdUhzZiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJuZXciO2E6MDp7fXM6Mzoib2xkIjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzI6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9wcm9maWxlLzM2Ijt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTt9', 1590824679);
+
 -- --------------------------------------------------------
 
 --
@@ -202,6 +253,13 @@ ALTER TABLE `eway_bill`
   ADD KEY `eway_bill_fk0` (`reg_id`);
 
 --
+-- Indexes for table `filings`
+--
+ALTER TABLE `filings`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `gst_id` (`gst_id`,`year`,`month`);
+
+--
 -- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
@@ -240,13 +298,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `companies`
 --
 ALTER TABLE `companies`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `eway_bill`
 --
 ALTER TABLE `eway_bill`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `filings`
+--
+ALTER TABLE `filings`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=182;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -275,6 +339,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `eway_bill`
   ADD CONSTRAINT `eway_bill_fk0` FOREIGN KEY (`reg_id`) REFERENCES `registration` (`id`);
+
+--
+-- Constraints for table `filings`
+--
+ALTER TABLE `filings`
+  ADD CONSTRAINT `filings_ibfk_1` FOREIGN KEY (`gst_id`) REFERENCES `companies` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

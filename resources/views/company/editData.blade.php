@@ -10,33 +10,46 @@ $d_type = array("Regular", "Composition");
 
             <div class="col-sm">
                 <div class="card bg-light mb-3  display-1s border border-primary shadow p-3 mb-5 rounded" style="max-width: 100%;">
-                    <form method="POST" action="{{ url('/company/edit/submit/'.$company-> id) }}" enctype="multipart/form-data">
+                <div class="card-header text-center card-header bg-transparent border-success ">
+                        <h3>Edit Company </h3>
+                    </div>
+                    <form method="POST" class="was-validated" action="{{ url('/company/edit/submit/'.$company-> id) }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="form-row">
                             <div class="form-group col-md-6 font-weight-bold">
                                 <label for="company">Company Name</label>
                                 <input type="text" class="form-control" id="name" name="name" placeholder="Enter company name" required value="{{ $company -> name }}">
+                                <div class="invalid-feedback">Provide Proper name.</div>
+
                             </div>
 
                             <div class="form-group col-md-6 font-weight-bold">
                                 <label for="gst_no">GST NO</label>
-                                <input type="text" class="form-control" id="gst_no" name="gst_no" placeholder="Enter GST number" required minlength="15" maxlength="15" value="{{ $company -> gst_no }}">
+                                <input type="text" class="form-control" id="gst_no" name="gst_no" placeholder="Enter GST number" required minlength="15" maxlength="15" value="{{ $company -> gst_no }}" pattern="^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$">
+                                <div class="invalid-feedback">Provide Proper GST number in Format.</div>
+
                             </div>
 
                             <div class="form-group col-md-12 font-weight-bold">
                                 <label for="address">Company Address</label>
                                 <input type="text" class="form-control" id="address" name="address" placeholder="Enter address" required value="{{ $company -> address }}">
+                                <div class="invalid-feedback">Please enter Address.</div>
+
                             </div>
 
                             <div class="form-group col-md-4 font-weight-bold">
                                 <label for="mobile">Company Phone No</label>
-                                <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="mobile" minlength="10" maxlength="10" value="{{ $company -> mobile }}">
+                                <input type="tel" class="form-control" id="mobile" name="mobile" placeholder="mobile" minlength="10" maxlength="10" value="{{ $company -> mobile }}" required pattern="[6-9]{1}[0-9]{9}">
+                                <div class="invalid-feedback">Enter 10 digit mobile number.</div>
+
                             </div>
 
 
                             <div class="form-group col-md-4 font-weight-bold">
                                 <label for="email">Company Email</label>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="email" value="{{ $company -> email }}">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="email" value="{{ $company -> email }}" required>
+                                <div class="invalid-feedback">Provide a valid Email.</div>
+
                             </div>
 
                             <div class="form-group col-md-4 font-weight-bold">
